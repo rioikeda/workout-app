@@ -4,7 +4,7 @@
 
 日々のトレーニングを素早く記録し、過去の履歴や成長を確認できることを目的として制作しました。
 
-## Live Demo
+## 公開サイト
 
 https://workout-app-rouge-beta.vercel.app/
 
