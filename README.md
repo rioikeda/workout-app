@@ -1,32 +1,83 @@
-# React + TypeScript + Vite
+# Workout.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+筋力トレーニングの記録を、シンプルかつ直感的に管理できるWebアプリです。
 
-Currently, two official plugins are available:
+日々のトレーニングを素早く記録し、過去の履歴や成長を確認できることを目的として制作しました。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 主な機能
 
-## React Compiler
+- ユーザー登録・ログイン
+- ワークアウトの開始・終了
+- 種目ごとの重量・回数・セット記録
+- 前回のトレーニング記録表示
+- プリセット作成・削除
+- プリセットからワークアウト開始
+- フリーワークアウト
+- トレーニング中の種目追加・削除
+- 完了した種目の管理
+- ワークアウト履歴の確認
+- 種目ごとの記録・成長の確認
+- PR（自己ベスト）の表示
+- ページ状態・進行中ワークアウトの復元
+- スマートフォン向けUI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 使用技術
 
-## Expanding the Oxlint configuration
+- React
+- TypeScript
+- Vite
+- Supabase
+- Recharts
+- CSS
+- Git / GitHub
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 制作背景
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+筋力トレーニングを続ける中で、トレーニング中でも簡単に記録でき、
+前回の重量や回数をすぐ確認できるアプリが欲しいと考えたことが制作のきっかけです。
+
+特にプリセット機能に力を入れており、メニューセットを確認せず素早くトレーニングを始めるのに最適です。
+
+特にスマートフォンでの使用を想定し、
+操作数をできるだけ減らしたシンプルなUIを意識して制作しました。
+
+また、実際のジムでは使用したいマシンが空いていない場合もあるため、
+決められた順番ではなく、その場で種目を選択して記録できる設計にしています。
+
+
+
+### トレーニング中の操作性
+
+重量・回数の入力や種目の切り替えを、スマートフォンから素早く行えるUIを意識しました。
+
+### セッションの復元
+
+トレーニング途中でページを再読み込みしても、
+進行中のセッションや選択中の種目、セット数などを復元できるようにしています。
+
+### プリセットとフリーワークアウト
+
+事前に作成したメニューから開始する方法だけでなく、
+その日の状況に合わせて自由に種目を追加できるようにしました。
+
+### データ管理
+
+Supabaseを利用し、ユーザー認証とトレーニングデータの保存を行っています。
+
+## 今後追加したい機能
+
+- より詳細なトレーニング分析
+- UI / UXの継続的な改善
+- パフォーマンス最適化
+- PWA / モバイルアプリ対応
+
+## 開発環境
+
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Author
+
+rio
