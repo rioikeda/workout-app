@@ -1,0 +1,1694 @@
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #111210;
+  color: #f4f3ee;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root>div {
+  width: min(460px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 34px 0 80px;
+}
+
+/* =========================
+   タイトル
+========================= */
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  font-weight: 650;
+  letter-spacing: -1.2px;
+  color: #f4f3ee;
+}
+
+h2 {
+  margin: 42px 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: #f4f3ee;
+}
+
+p {
+  color: #85877f;
+  line-height: 1.6;
+}
+
+/* =========================
+   入力欄
+========================= */
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: 100%;
+  padding: 17px 18px;
+  margin-bottom: 10px;
+  background: #1b1c19;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  color: #f4f3ee;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+input::placeholder {
+  color: #666861;
+}
+
+input:focus {
+  background: #20211e;
+  border-color: #55584f;
+}
+
+/* =========================
+   セレクト
+========================= */
+
+select {
+  width: 100%;
+  padding: 17px 18px;
+  margin-bottom: 10px;
+  background: #1b1c19;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  color: #f4f3ee;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+select:focus {
+  background: #20211e;
+  border-color: #55584f;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+button {
+  padding: 14px 20px;
+  background: #d7ff63;
+  color: #111210;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 650;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =========================
+   プリセット作成
+========================= */
+
+.preset-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 14px;
+}
+
+.preset-form>input[type="text"] {
+  width: 100%;
+  margin: 0;
+}
+
+.preset-form>p {
+  margin: 10px 0 4px;
+  text-align: left;
+}
+
+/* 種目一覧 */
+
+.preset-exercise-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+/* □ 種目名 を横並び */
+
+.preset-exercise-item {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* チェックボックス */
+
+.preset-exercise-item input[type="checkbox"] {
+  appearance: auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 種目名 */
+
+.preset-exercise-item span {
+  display: block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  color: #f5f5f5;
+  line-height: 1.4;
+  text-align: left;
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 600px) {
+  #root>div {
+    width: calc(100% - 30px);
+    padding: 30px 0;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
+
+.active-exercise {
+  border: 2px solid #8fae73;
+  font-weight: 700;
+}
+
+.completed-exercise {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* =========================
+   プリセットカード
+========================= */
+
+.preset-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.preset-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.preset-grid::-webkit-scrollbar-thumb {
+  background: #2f302b;
+  border-radius: 999px;
+}
+
+.preset-card {
+  flex: 0 0 156px;
+  scroll-snap-align: start;
+  min-height: 108px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #1b1c19;
+  color: #f4f3ee;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  text-align: left;
+}
+
+.preset-card:hover {
+  opacity: 1;
+  background: #20211e;
+}
+
+.preset-card-active {
+  background: linear-gradient(145deg,
+      #dfff63 0%,
+      #c8ff3d 55%,
+      #aeea28 100%);
+  color: #111210;
+}
+
+.preset-card-active:hover {
+  background: #d7ff63;
+}
+
+.preset-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.preset-card-count {
+  color: #777970;
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0;
+}
+
+.preset-card-active .preset-card-count {
+  color: rgba(17, 18, 16, 0.62);
+}
+
+.preset-card-name {
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.4px;
+}
+
+.preset-card-arrow {
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #262824;
+  border: 1px solid #363832;
+  border-radius: 50%;
+  color: #d7ff63;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.preset-card-active .preset-card-arrow {
+  background: #111210;
+  border-color: #111210;
+  color: #d7ff63;
+}
+
+/* =========================
+   選択中プリセット
+========================= */
+
+.selected-preset {
+  margin-top: 18px;
+  padding: 20px;
+  background: #171815;
+  border-radius: 24px;
+}
+
+.selected-preset-label {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: #6f716a;
+}
+
+.selected-preset-exercises {
+  display: flex;
+  flex-direction: column;
+}
+
+.selected-preset-exercise {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #262722;
+  color: #f4f3ee;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.selected-preset-exercise:last-child {
+  border-bottom: none;
+}
+
+.exercise-number {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #676961;
+}
+
+/* =========================
+   トレーニング開始
+========================= */
+
+.start-workout-button {
+  width: 100%;
+  min-height: 68px;
+  margin-top: 12px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d7ff63;
+  color: #111210;
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.start-workout-button::after {
+  content: "→";
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.start-workout-button:hover {
+  background: #d7ff63;
+  opacity: 0.92;
+}
+
+/* =========================
+   重量・回数
+========================= */
+
+.workout-input {
+  margin-top: 18px;
+}
+
+.workout-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.workout-value {
+  display: block;
+  padding: 18px;
+  background: #1b1c19;
+  border-radius: 24px;
+}
+
+.workout-value>span {
+  display: block;
+  margin-bottom: 12px;
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.value-input {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.value-input input[type="number"] {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: #f4f3ee;
+  font-size: 36px;
+  font-weight: 650;
+  letter-spacing: -1.5px;
+}
+
+.value-input input[type="number"]:focus {
+  background: transparent;
+  border: none;
+}
+
+.value-input small {
+  color: #777970;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================
+   セット記録
+========================= */
+
+.set-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 28px 2px 12px;
+}
+
+.set-header span {
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.set-header strong {
+  color: #f4f3ee;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+.previous-records {
+  margin: 14px 0;
+}
+
+.previous-records-label {
+  margin: 0 0 8px 2px;
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.previous-record {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 4px;
+  background: transparent;
+  color: #8d8f87;
+  border-bottom: 1px solid #242520;
+  border-radius: 0;
+  font-size: 13px;
+}
+
+.previous-record:hover {
+  background: transparent;
+  opacity: 1;
+  color: #f4f3ee;
+}
+
+.previous-record span {
+  font-size: 11px;
+  color: #62645d;
+}
+
+.previous-record strong {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.workout-stat {
+  display: inline-block;
+  margin: 4px 10px 4px 2px;
+  color: #696b64;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.save-set-button {
+  width: 100%;
+  min-height: 72px;
+  margin-top: 18px;
+  background: #d7ff63;
+  color: #111210;
+  border-radius: 24px;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.save-set-button:hover {
+  background: #d7ff63;
+}
+
+/* =========================
+   サブアクション
+========================= */
+
+.complete-exercise-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px 20px;
+  background: #1b1c19;
+  color: #a5a79f;
+  border: 1px solid #292a25;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.complete-exercise-button:hover {
+  background: #20211e;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+.finish-workout-button {
+  width: 100%;
+  margin-top: 28px;
+  padding: 15px 20px;
+  background: transparent;
+  color: #777970;
+  border: 1px solid #2d2e29;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.finish-workout-button:hover {
+  background: #1b1c19;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+/* =========================
+   トレーニング中の種目
+========================= */
+
+.workout-exercise-list {
+  display: flex;
+  gap: 8px;
+  margin: 18px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.workout-exercise-list::-webkit-scrollbar {
+  display: none;
+}
+
+.workout-exercise-button {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  background: #1b1c19;
+  color: #85877f;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.workout-exercise-button:hover {
+  background: #20211e;
+  opacity: 1;
+}
+
+.workout-exercise-button.active-exercise {
+  background: #f4f3ee;
+  color: #111210;
+  border: none;
+}
+
+.workout-exercise-button.completed-exercise {
+  background: transparent;
+  color: #55574f;
+  border: 1px solid #292a25;
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* WORKOUT一覧をそのまま種目選択に */
+
+.selected-preset-exercise {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 34px 1fr 58px;
+  align-items: center;
+  padding: 16px 6px;
+  background: transparent;
+  color: #f4f3ee;
+  border: none;
+  border-bottom: 1px solid #262722;
+  border-radius: 0;
+  text-align: left;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.selected-preset-exercise:last-child {
+  border-bottom: none;
+}
+
+.selected-preset-exercise:hover {
+  background: transparent;
+  opacity: 1;
+}
+
+.selected-exercise-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.exercise-status {
+  text-align: right;
+  color: #d7ff63;
+  font-size: 11px;
+}
+
+.selected-preset-exercise-active {
+  color: #ffffff;
+}
+
+.selected-preset-exercise-active .exercise-number {
+  color: #d7ff63;
+}
+
+.selected-preset-exercise-completed {
+  opacity: 0.35;
+}
+
+/* =========================
+   その他の種目
+========================= */
+
+.other-exercise-select {
+  margin-top: 12px;
+  padding: 13px 16px;
+  background: transparent;
+  color: #777970;
+  border: 1px solid #292a25;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.other-exercise-select:focus {
+  background: #171815;
+  border-color: #3a3c35;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.app-eyebrow {
+  margin: 0 0 4px;
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 650;
+  letter-spacing: -1.8px;
+}
+
+.logout-button {
+  padding: 9px 13px;
+  background: transparent;
+  color: #666861;
+  border: 1px solid #292a25;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.logout-button:hover {
+  background: #1b1c19;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+/* =========================
+   プリセット見出し
+========================= */
+
+.preset-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-label {
+  margin: 0 0 4px;
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+.preset-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+}
+
+.add-preset-button {
+  width: 100%;
+  margin-top: 2px;
+  padding: 13px 4px;
+  background: transparent;
+  color: #777970;
+  border: none;
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.add-preset-button:hover {
+  background: transparent;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+/* =========================
+   トレーニング履歴
+========================= */
+
+.history-card {
+  margin-top: 14px;
+  padding: 18px;
+  background: #171815;
+  border-radius: 24px;
+}
+
+.history-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.history-card-header span {
+  color: #777970;
+  font-size: 12px;
+}
+
+.history-card-header strong {
+  color: #f4f3ee;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.history-exercise {
+  padding: 14px 0;
+  border-top: 1px solid #262722;
+}
+
+.history-exercise h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.history-set {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  color: #8b8d85;
+  font-size: 13px;
+}
+
+.history-set button {
+  padding: 6px 10px;
+  background: transparent;
+  color: #666861;
+  border: 1px solid #2a2b27;
+  border-radius: 999px;
+  font-size: 10px;
+}
+
+.history-set button:hover {
+  background: #20211e;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+/* =========================
+   種目追加
+========================= */
+
+.add-exercise-area {
+  margin-top: 14px;
+}
+
+.add-exercise-button {
+  width: 100%;
+  padding: 13px 4px;
+  background: transparent;
+  color: #777970;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.add-exercise-button:hover {
+  background: transparent;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+.other-exercise-select {
+  margin-top: 8px;
+}
+
+.preset-card {
+  position: relative;
+}
+
+.preset-delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #666861;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.preset-delete-button:hover {
+  background: #2a2b27;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+.quick-start {
+  margin-top: 10px;
+}
+
+.quick-start h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+}
+
+.free-workout-button {
+  width: 100%;
+  min-height: 68px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1b1c19;
+  color: #f4f3ee;
+  border: 1px solid #292a25;
+  border-radius: 22px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.free-workout-button::after {
+  content: "→";
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.free-workout-button:hover {
+  background: #20211e;
+  opacity: 1;
+}
+
+.exercise-status-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.remove-extra-exercise {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #777970;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.remove-extra-exercise:hover {
+  background: #2a2b27;
+  color: #f4f3ee;
+  opacity: 1;
+}
+
+/* =========================
+   現在の種目
+========================= */
+
+.current-exercise-header {
+  margin-top: 28px;
+  padding: 0 2px;
+}
+
+.current-exercise-header span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6f716a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.current-exercise-header strong {
+  display: block;
+  color: #f4f3ee;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.previous-inline {
+  display: block;
+  margin-top: 8px;
+  color: #666861;
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0;
+}
+
+.growth-value {
+  margin-left: 8px;
+  color: #d7ff63;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================
+   WORKOUT SUMMARY
+========================= */
+
+.workout-summary {
+  margin: 24px 0;
+  padding: 28px 24px;
+  background: #171916;
+  border: 1px solid #292c26;
+  border-radius: 28px;
+}
+
+.summary-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #d7ff63;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.workout-summary h2 {
+  margin: 0 0 28px;
+  color: #f4f3ee;
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+
+.summary-main {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #0f110f;
+  border-radius: 20px;
+}
+
+.summary-main span {
+  display: block;
+  margin-bottom: 6px;
+  color: #777a72;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.summary-main strong {
+  display: block;
+  color: #f4f3ee;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.summary-stats>div {
+  padding: 18px;
+  background: #0f110f;
+  border-radius: 18px;
+}
+
+.summary-stats span {
+  display: block;
+  margin-bottom: 6px;
+  color: #777a72;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.summary-stats strong {
+  color: #f4f3ee;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.summary-close-button {
+  width: 100%;
+  padding: 16px;
+  background: #d7ff63;
+  color: #11130f;
+  border: none;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.summary-close-button:active {
+  transform: scale(0.98);
+}
+
+.summary-pr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 18px 20px;
+  background: rgba(215, 255, 99, 0.08);
+  border: 1px solid rgba(215, 255, 99, 0.22);
+  border-radius: 18px;
+}
+
+.summary-pr span {
+  color: #d7ff63;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.summary-pr strong {
+  color: #d7ff63;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* =========================
+   履歴セクション
+========================= */
+
+.history-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 42px;
+  margin-bottom: 18px;
+}
+
+.history-header .section-label {
+  margin-bottom: 5px;
+}
+
+.history-title {
+  margin: 0;
+  color: #f4f3ee;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.7px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(calc(100% - 28px), 432px);
+  height: 68px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 6px;
+  background: rgba(28, 30, 29, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.bottom-nav button {
+  height: 54px;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  color: #74766f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.bottom-nav button.active {
+  background: #d7ff63;
+  color: #11130f;
+}
+
+.app-shell {
+  padding-bottom: 105px;
+}
+
+.analytics-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.analytics-stat-card {
+  background: #1a1b18;
+  border-radius: 18px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.analytics-stat-card span {
+  font-size: 10px;
+  color: #8d8f87;
+  letter-spacing: 0.08em;
+}
+
+.analytics-stat-card strong {
+  font-size: 18px;
+  color: #f4f3ee;
+}
+
+.analytics-exercise-select {
+  width: 100%;
+  background: #1a1b18;
+  color: #f4f3ee;
+  border: none;
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  outline: none;
+}
+
+.analytics-chart-card {
+  width: 100%;
+  height: 240px;
+  box-sizing: border-box;
+  background: #1a1b18;
+  border-radius: 22px;
+  padding: 10px 10px 6px;
+  margin-top: 12px;
+}
+
+.analytics-chart-heading {
+  margin: 24px 0 12px;
+}
+
+.analytics-chart-heading span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8d8f87;
+}
+
+.analytics-chart-heading h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f4f3ee;
+}
+
+.analytics-page {
+  padding-bottom: 50px;
+}
+
+.history-calendar-weekdays,
+.history-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.history-calendar-weekdays {
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.history-calendar-weekdays span {
+  font-size: 10px;
+  color: #8d8f87;
+}
+
+.history-calendar-day {
+  position: relative;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #f4f3ee;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.history-calendar-day.has-workout {
+  color: #d7ff63;
+  font-weight: 700;
+  background: rgba(215, 255, 99, 0.12);
+  border-radius: 50%;
+}
+
+.history-calendar-dot {
+  position: absolute;
+  bottom: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #d7ff63;
+}
+
+.history-calendar-day.selected {
+  background: #d7ff63;
+  color: #111210;
+}
+
+.history-calendar-day.selected .history-calendar-dot {
+  background: #111210;
+}
+
+.history-calendar-header button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #2a2b27;
+  border-radius: 12px;
+  background: #1a1b18;
+  color: #f4f3ee;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.history-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 18px;
+}
+
+.history-calendar-day.today {
+  box-shadow: inset 0 0 0 1.5px #d7ff63;
+}
+
+.home-page-content {
+  padding-bottom: 140px;
+}
+
+.home-hero {
+  position: relative;
+  height: 150px;
+  margin-bottom: 26px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 60%,
+      rgba(215, 255, 99, 0.08),
+      transparent 35%),
+    #151613;
+  border: none;
+  border-radius: 0;
+}
+
+.home-hero-copy {
+  position: absolute;
+  left: 20px;
+  z-index: 3;
+  bottom: 18px;
+  margin: 0;
+  color: #f4f3ee;
+  font-size: 30px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -1.5px;
+}
+
+.home-hero-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 1;
+  z-index: 1;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 8%, black 82%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 8%, black 82%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@media (max-width: 600px) {
+  .home-hero {
+    height: 125px;
+    margin-bottom: 22px;
+  }
+
+  .preset-card {
+    flex: 0 0 142px;
+    min-height: 104px;
+    padding: 16px;
+  }
+}
+
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,
+      #111210 0%,
+      rgba(17, 18, 16, 0.95) 10%,
+      transparent 35%,
+      transparent 62%,
+      rgba(17, 18, 16, 0.75) 84%,
+      #111210 100%),
+    linear-gradient(to bottom,
+      #111210 0%,
+      rgba(17, 18, 16, 0.9) 14%,
+      transparent 38%,
+      transparent 58%,
+      rgba(17, 18, 16, 0.75) 78%,
+      #111210 100%);
+}
+
+/* =========================
+   MOBILE WORKOUT COMPACT
+========================= */
+
+@media (max-width: 600px) {
+
+  /* トレーニング中の種目一覧を横スワイプ */
+  .page-workout .selected-preset-exercises {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px 0 8px;
+  }
+
+  .page-workout .selected-preset-exercises::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-workout .selected-preset-exercise {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 120px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 12px 14px;
+    background: #1b1c19;
+    border: 1px solid #292a25;
+    border-radius: 16px;
+    white-space: nowrap;
+  }
+
+  .page-workout .selected-preset-exercise-active {
+    border-color: #d7ff63;
+  }
+
+  .page-workout .selected-preset {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .page-workout .workout-input {
+    margin-top: 8px;
+  }
+
+  .page-workout .add-exercise-area {
+    margin-top: 4px;
+  }
+
+  .page-workout .current-exercise-header {
+    margin-top: 14px;
+  }
+
+  .page-workout .set-header {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-workout {
+    padding-bottom: 170px;
+  }
+
+  .page-workout .finish-workout-button {
+    margin-top: 14px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* 前回記録を横スワイプ */
+  .page-workout .previous-records {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin: 14px 0 10px;
+    padding-bottom: 4px;
+  }
+
+  .page-workout .previous-records::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-workout .previous-records-label {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin: 0 6px 0 0;
+  }
+
+  .page-workout .previous-record {
+    flex: 0 0 auto;
+    width: auto;
+    gap: 14px;
+    padding: 11px 14px;
+    background: #1b1c19;
+    border: 1px solid #292a25;
+    border-radius: 14px;
+    white-space: nowrap;
+  }
+
+  /* 終了ボタンをナビより上に確実に出す */
+  .page-workout .finish-workout-button {
+    position: relative;
+    z-index: 1100;
+    margin-top: 12px;
+    margin-bottom: 105px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-workout .previous-records {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .page-workout .previous-records-label {
+    flex: 0 0 100%;
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .page-workout .previous-record {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-workout .previous-section {
+    width: 100%;
+    margin-top: 18px;
+    overflow: hidden;
+  }
+
+  .page-workout .previous-section .previous-records-label {
+    display: block;
+    width: 100%;
+    margin: 0 0 12px;
+  }
+
+  .page-workout .previous-section .previous-records {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin: 0;
+    padding: 0 0 4px;
+  }
+
+  .page-workout .previous-section .previous-records::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-workout .previous-section .previous-record {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 360px;
+  margin: 36px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-form input {
+  width: 100%;
+  margin: 0;
+}
+
+.auth-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.auth-actions button {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .auth-form {
+    max-width: 100%;
+    margin-top: 28px;
+  }
+
+  .auth-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-actions button {
+    min-height: 56px;
+  }
+}
+
+.auth-form input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 64px;
+  padding: 0 22px;
+  background: #1b1c19;
+  color: #f5f5f5;
+  border: 1px solid #292a25;
+  border-radius: 20px;
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.auth-form input::placeholder {
+  color: #6f706a;
+}
+
+.auth-form input:focus {
+  border-color: #d7ff63;
+}
